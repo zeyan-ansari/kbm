@@ -35,6 +35,7 @@ class UtilityCard extends StatelessWidget {
                child: Marquee(
                  text: name,
                  velocity: 25.0,
+                 style: TextStyle(color: appState.isDarkMode?Colors.white:Color(0xffa80000)),
                  pauseAfterRound: Duration(milliseconds: 0),
                  startPadding: 10.0,
                  blankSpace: 10,

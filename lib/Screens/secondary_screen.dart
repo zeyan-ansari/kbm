@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../Helper/App_notifier.dart';
 import '../Widgets/custom_app_bar.dart';
 import '../Widgets/utility_card_widget.dart';
 
@@ -21,7 +23,11 @@ class _SecondaryScreenState extends State<SecondaryScreen> {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(50),
-          child: CustomAppBar(Name:widget.title, isCompass: false,)),
+          child:  Consumer<AppStateNotifier>(
+              builder: (context, appState, child) {
+              return CustomAppBar(Name:widget.title, isCompass: false,isDark: appState.isDarkMode,);
+            }
+          )),
       body: Container(
         child: Column(
           children: [

@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 
+import '../../Helper/App_notifier.dart';
 import '../../Widgets/custom_app_bar.dart';
 import 'compass_maps.dart';
 
@@ -27,7 +29,11 @@ class _CompassState extends State<Compass> {
     return Scaffold(
        appBar: PreferredSize(
            preferredSize: Size.fromHeight(50),
-           child: CustomAppBar(Name:widget.title, isCompass: true,)),
+           child: Consumer<AppStateNotifier>(
+               builder: (context, appState, child) {
+               return CustomAppBar(Name:widget.title, isCompass: true,isDark:appState.isDarkMode);
+             }
+           )),
       body: FutureBuilder(
         future: _deviceSupport,
         builder: (_, AsyncSnapshot<bool?> snapshot) {
