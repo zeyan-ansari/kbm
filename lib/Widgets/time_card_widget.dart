@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class TimeCard extends StatelessWidget {
   final IconData iconName;
   final String Name;
+  final String subName;
   const TimeCard({
-    Key? key, required this.iconName, required this.Name,
+    Key? key, required this.iconName, required this.Name, required this.subName,
   }) : super(key: key);
 
   @override
@@ -19,7 +20,11 @@ class TimeCard extends StatelessWidget {
           Text(Name,
             style: const TextStyle(
                 color: Colors.white,fontSize: 12
-            ),)
+            ),),SizedBox(height: 5,),
+          Text(subName,
+            style: const TextStyle(
+                color: Colors.white,fontSize: 12
+            ),),
         ],
       ),
     );

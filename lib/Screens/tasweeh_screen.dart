@@ -17,11 +17,16 @@ class TasweehScreen extends StatefulWidget {
 }
 
 class _TasweehScreenState extends State<TasweehScreen> {
-  double _counter = 0.0;
+  int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
-      _counter = _counter + 0.01;
+      _counter ++;
+    });
+  }
+  void _decrementCounter() {
+    setState(() {
+      _counter --;
     });
   }
 
@@ -29,6 +34,48 @@ class _TasweehScreenState extends State<TasweehScreen> {
   Widget build(BuildContext context) {
     return Consumer<AppStateNotifier>(builder: (context, appState, child) {
       return Scaffold(
+        bottomNavigationBar: Container(
+          height: 100,
+          child: Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    HapticFeedback.heavyImpact();
+                    _incrementCounter();
+                  },
+                  child: Container(padding: EdgeInsets.all(25),
+                      margin: EdgeInsets.all(5),
+
+                      decoration: ShapeDecoration(
+                          color: appState.isDarkMode ? Colors.black : Color(0xffa80000),
+                          shape: ContinuousRectangleBorder(
+                              borderRadius: BorderRadius.circular(42)
+                          )
+                      ),
+                      child: Text('+',textAlign: TextAlign.center,style: TextStyle(fontSize:32,color:Colors.white),)),
+                ),
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    HapticFeedback.heavyImpact();
+                    _decrementCounter();
+                  },
+                  child: Container(padding: EdgeInsets.all(25),
+                      margin: EdgeInsets.all(5),
+                      decoration: ShapeDecoration(
+                          color: appState.isDarkMode ? Colors.black : Color(0xffa80000),
+                          shape: ContinuousRectangleBorder(
+                              borderRadius: BorderRadius.circular(42)
+                          )
+                      ),
+                      child: Text('-',textAlign: TextAlign.center,style: TextStyle(fontSize:32,color:Colors.white),)),
+                ),
+              ),
+            ],
+          ),
+        ),
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(50),
             child: CustomAppBar(
@@ -38,7 +85,7 @@ class _TasweehScreenState extends State<TasweehScreen> {
             )),
         body: GestureDetector(
           onTap: () {
-            HapticFeedback.mediumImpact();
+            HapticFeedback.heavyImpact();
             _incrementCounter();
           },
           child: Center(
@@ -46,16 +93,15 @@ class _TasweehScreenState extends State<TasweehScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircularPercentIndicator(
-                  animation: false,
-                  radius: 80.0,
-                  lineWidth: 30.0,
-                  percent: _counter,
-                  circularStrokeCap: CircularStrokeCap.round,
-                  center: Text(_counter.toStringAsFixed(2)),
-                  progressColor:
-                      appState.isDarkMode ? Colors.black : Color(0xffa80000),
-                ),
+                Container(padding: EdgeInsets.all(50),
+                    decoration: ShapeDecoration(
+                      color: appState.isDarkMode ? Colors.black : Color(0xffa80000),
+                      shape: ContinuousRectangleBorder(
+                        borderRadius: BorderRadius.circular(42)
+                      )
+                    ),
+                    child: Text(_counter.toString(),style: TextStyle(fontSize:32,color:Colors.white),)),
+
               ],
             ),
           ),
