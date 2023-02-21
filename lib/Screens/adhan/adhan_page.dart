@@ -113,7 +113,9 @@ class _AdhanState extends State<Adhan> {
         future: giveAzanTimes(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
+            return const Align(
+              alignment: Alignment.bottomCenter,
+
               child: Text(
                 "Loading Adhan timings...\nPlease ensure that GPS is tuned on.",
                 textAlign: TextAlign.center,
@@ -129,7 +131,9 @@ class _AdhanState extends State<Adhan> {
               onTap: () async {
                 await giveAzanTimes();
               },
-              child: const Center(
+              child: const Align(
+                alignment: Alignment.bottomCenter,
+
                 child: Text(
                   "Please check your internet connection or restart the app\nOr give GPS permission to use location.",
                 ),
@@ -156,7 +160,8 @@ class _AdhanState extends State<Adhan> {
               onTap: () async {
                 await giveAzanTimes();
               },
-              child: const Center(
+              child: const Align(
+                alignment: Alignment.bottomCenter,
                 child: Text(
                   "Please check your internet connection or restart the app\nOr give GPS permission to use location.",
                   softWrap: true,

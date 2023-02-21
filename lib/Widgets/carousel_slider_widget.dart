@@ -20,22 +20,38 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
         builder: (context, appState, child) {
         return CarouselSlider(
             items: [
-              Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUAFjWAxHZneR2kF_7qu2RJFXk-vLUZhj6w_f_1zwAKeO8InH1TpPlRfolalR-p4Q3X2k&usqp=CAU'),
-              Image.network('https://thumbs.dreamstime.com/b/christmas-background-banner-format-tree-branches-holly-star-anise-pink-copy-space-157176582.jpg'),
-              Image.network('https://thumbs.dreamstime.com/b/merry-christmas-happy-new-year-card-festive-green-fir-branches-holiday-object-pale-pink-background-123729608.jpg'),
+              Container(
+                  width: double.infinity,
+                  decoration: ShapeDecoration(
+                      shape: ContinuousRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      )
+                  ),
+                  padding: EdgeInsets.all(15),
+                  child: Image.asset('images/home_banner1.jpeg')),
+              Container(width: double.infinity,
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  decoration: ShapeDecoration(
+                      shape: ContinuousRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      )
+                  ),
+                  padding: EdgeInsets.all(15),
+                  child: Image.asset('images/banner.jpg')),
             ],
             options: CarouselOptions(
-              height: 150,
-              aspectRatio: 2/1,
-              viewportFraction: 0.9,
+              height: 400,
+              aspectRatio: 4/4,
+              viewportFraction:1,
               initialPage: 0,
               enableInfiniteScroll: true,
+
               reverse: false,
               autoPlay: true,
               autoPlayInterval: Duration(seconds: 3),
               autoPlayAnimationDuration: Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enlargeCenterPage: true,
+              autoPlayCurve: Curves.linearToEaseOut,
+              enlargeCenterPage: false,
               scrollDirection: Axis.horizontal,
             ));
       }

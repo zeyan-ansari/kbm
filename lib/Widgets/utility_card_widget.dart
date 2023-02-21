@@ -26,6 +26,7 @@ class UtilityCard extends StatelessWidget {
               )
           ),
           padding: EdgeInsets.all(15),
+
           child:Column(mainAxisAlignment: MainAxisAlignment.center,
             children:  [
               Expanded(child: Image.asset(imgName,color: appState.isDarkMode?Colors.white:Color(0xffa80000),height: 30,)),

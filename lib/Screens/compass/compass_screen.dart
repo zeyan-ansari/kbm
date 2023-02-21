@@ -28,7 +28,7 @@ class _CompassState extends State<Compass> {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: PreferredSize(
-           preferredSize: Size.fromHeight(50),
+           preferredSize: const Size.fromHeight(50),
            child: Consumer<AppStateNotifier>(
                builder: (context, appState, child) {
                return CustomAppBar(Name:widget.title, isCompass: true,isDark:appState.isDarkMode);
@@ -37,17 +37,20 @@ class _CompassState extends State<Compass> {
       body: FutureBuilder(
         future: _deviceSupport,
         builder: (_, AsyncSnapshot<bool?> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return LoadingIndicator();
-          if (snapshot.hasError)
+          }
+          if (snapshot.hasError) {
             return Center(
               child: Text("Error: ${snapshot.error.toString()}"),
             );
+          }
 
-          if (snapshot.data!)
+          if (snapshot.data!) {
             return QiblahCompass();
-          else
+          } else {
             return QiblahMaps();
+          }
         },
       ),
     );
@@ -59,8 +62,8 @@ class LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final widget = (Platform.isAndroid)
-        ? CircularProgressIndicator()
-        : CupertinoActivityIndicator();
+        ? const CircularProgressIndicator()
+        : const CupertinoActivityIndicator();
     return Container(
       alignment: Alignment.center,
       child: widget,
@@ -77,15 +80,15 @@ class LocationErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final box = SizedBox(height: 32);
-    final errorColor = Color(0xffb00020);
+    const box = SizedBox(height: 32);
+    const errorColor = Color(0xffb00020);
 
     return Container(
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(
+            const Icon(
               Icons.location_off,
               size: 150,
               color: errorColor,
@@ -93,11 +96,11 @@ class LocationErrorWidget extends StatelessWidget {
             box,
             Text(
               error!,
-              style: TextStyle(color: errorColor, fontWeight: FontWeight.bold),
+              style: const TextStyle(color: errorColor, fontWeight: FontWeight.bold),
             ),
             box,
             ElevatedButton(
-              child: Text("Retry"),
+              child: const Text("Retry"),
               onPressed: () {
                 if (callback != null) callback!();
               },
@@ -110,6 +113,8 @@ class LocationErrorWidget extends StatelessWidget {
 }
 
 class QiblahCompass extends StatefulWidget {
+  const QiblahCompass({super.key});
+
   @override
   _QiblahCompassState createState() => _QiblahCompassState();
 }
@@ -134,8 +139,9 @@ class _QiblahCompassState extends State<QiblahCompass> {
       child: StreamBuilder(
         stream: stream,
         builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return LoadingIndicator();
+          }
           if (snapshot.data!.enabled == true) {
             switch (snapshot.data!.status) {
               case LocationPermission.always:
@@ -178,8 +184,9 @@ class _QiblahCompassState extends State<QiblahCompass> {
       await FlutterQiblah.requestPermissions();
       final s = await FlutterQiblah.checkLocationStatus();
       _locationStreamController.sink.add(s);
-    } else
+    } else {
       _locationStreamController.sink.add(locationStatus);
+    }
   }
 
   @override
@@ -191,9 +198,8 @@ class _QiblahCompassState extends State<QiblahCompass> {
 }
 
 class QiblahCompassWidget extends StatelessWidget {
-  final _compassSvg = SvgPicture.asset('assets/compass.svg');
-  final _needleSvg = SvgPicture.asset(
-    'assets/needle.svg',
+  final _compassSvg = SvgPicture.asset('images/icons/compass.svg');
+  final _needleSvg = Image.asset('images/icons/qibla.png',
     fit: BoxFit.contain,
     height: 300,
     alignment: Alignment.center,
@@ -204,27 +210,27 @@ class QiblahCompassWidget extends StatelessWidget {
     return StreamBuilder(
       stream: FlutterQiblah.qiblahStream,
       builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting)
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return LoadingIndicator();
+        }
 
         final qiblahDirection = snapshot.data!;
 
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Transform.rotate(
-              angle: (qiblahDirection.direction * (pi / 180) * -1),
-              child: _compassSvg,
+            Container(margin: EdgeInsets.only(top: 10,left: 2),
+              child: Transform.rotate(
+                angle: (qiblahDirection.direction * (pi / 180) * -1),
+                child: _compassSvg,
+              ),
             ),
             Transform.rotate(
               angle: (qiblahDirection.qiblah * (pi / 180) * -1),
               alignment: Alignment.center,
               child: _needleSvg,
             ),
-            Positioned(
-              bottom: 8,
-              child: Text("${qiblahDirection.offset.toStringAsFixed(3)}°"),
-            )
+
           ],
         );
       },
