@@ -2,7 +2,7 @@ List<Map<String, String>> namaaz = [
   {
     "title": "Namaaz-E-Shab",
     "audio_url":
-    "http://docs.google.com/uc?export=open&id=1BPe8DSm0Y_IBz-gZDJG55yCyFyP4CwtS",
+    "https://docs.google.com/uc?export=open&id=1BPe8DSm0Y_IBz-gZDJG55yCyFyP4CwtS",
 
     "arabic":
     """Imam al-Sadiq (a.s.) has reported that the Holy Prophet (s.a.w.a.) said to Imam Ali (a.s.), "O Ali! I shall give you some moralities that you should observe... Abide by the night prayer. Abide by the night prayer. Abide by the night prayer. Abide by the midday prayer. Abide by the midday prayer. Abide by the midday prayer."

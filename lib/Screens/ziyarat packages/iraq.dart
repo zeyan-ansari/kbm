@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../Helper/App_notifier.dart';
 import '../../Widgets/custom_app_bar.dart';
+import '../register_form.dart';
 
 // import 'Webview_Form.dart';
 
@@ -92,6 +93,12 @@ class _IraqPackagesState extends State<IraqPackages> {
                           height: 5,
                         ),
                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => RegisterForm(title:'K.B.M Ziyarat Packages' ,)),
+                            );
+                          },
                           child: Container(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                             decoration: ShapeDecoration(
 
@@ -132,6 +139,12 @@ class _IraqPackagesState extends State<IraqPackages> {
                           height: 5,
                         ),
                         GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => RegisterForm(title:'K.B.M Ziyarat Packages' ,)),
+                            );
+                          },
                           child: Container(padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                             decoration: ShapeDecoration(
 

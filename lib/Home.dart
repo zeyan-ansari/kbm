@@ -29,6 +29,7 @@ import 'Screens/eng2Persian/eng2per_screen.dart';
 import 'Screens/eng2arabic/eng2arab.dart';
 import 'Screens/hadith/hadith_home.dart';
 import 'Screens/masoomeen_life_history/masoomeen_home.dart';
+import 'Screens/reviews/reviews_screen.dart';
 import 'Screens/safar/safar_menu.dart';
 import 'Screens/waqf/waqf.dart';
 import 'Screens/writeups/nauhas.dart';
@@ -50,7 +51,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   final Map<String, String> imgList = {
-    'Tasweeh': 'images/icons/bead.png',
+    'Tasbeeh': 'images/icons/bead.png',
     'Al Quran': 'images/icons/book.png',
     'K.B.M Ziyarat Packages': 'images/icons/kaaba.png',
     'Namaaz': 'images/icons/rug.png',
@@ -218,6 +219,13 @@ class _HomeState extends State<Home> {
                     title: const Text('Reviews'),
                     leading: const Icon(CupertinoIcons.star_circle),
                     onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Reviews()
+                        ),
+                      );
                       // Update the state of the app.
                       // ...
                     },

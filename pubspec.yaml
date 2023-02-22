@@ -61,7 +61,10 @@ dependencies:
   kf_drawer: ^1.2.1
   blur: ^3.0.0
   curved_drawer_fork: ^0.0.1+1
-
+  image_picker: ^0.8.6+2
+  mailer: ^6.0.0
+  google_fonts: ^4.0.3
+  webview_flutter: ^4.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -119,9 +122,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
+  fonts:
+    - family: Alqalam
+      fonts:
+        - asset: fonts/alqalam.ttf
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

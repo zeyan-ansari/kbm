@@ -18,7 +18,9 @@
         </intent>
     </queries>
    <application
-        android:label="kbm"
+       android:usesCleartextTraffic="true"
+
+       android:label="kbm"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

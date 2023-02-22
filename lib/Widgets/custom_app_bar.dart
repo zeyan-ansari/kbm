@@ -24,7 +24,8 @@ class CustomAppBar extends StatefulWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   @override
   AppBar build(BuildContext context) {
-    return AppBar(
+    return
+      AppBar(
       backgroundColor: widget.isDark ? Colors.black : Color(0xffa80000),
       // surfaceTintColor: Colors.white,
       actions: [

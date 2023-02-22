@@ -176,7 +176,7 @@ class _AttPageState extends State<AttPage> {
                       ? assetsAudioPlayer.current.value?.audio.duration
                       : 0) as Duration;
                   Duration progress =
-                  maxDuration! > position ? position : maxDuration;
+                  maxDuration > position ? position : maxDuration;
                   return Column(
                     children: <Widget>[
                       Slider(
@@ -187,22 +187,23 @@ class _AttPageState extends State<AttPage> {
                           assetsAudioPlayer
                               .seek(Duration(seconds: value.toInt()));
                         },
-                        activeColor: Theme.of(context).primaryColor,
-                        inactiveColor:
-                        Theme.of(context).primaryColor.withOpacity(0.3),
+                        // activeColor: Theme.of(context).primaryColor,
+                        // inactiveColor:
+                        // Theme.of(context).primaryColor.withOpacity(0.3),
                       ),
                       Text(
                           "${formatPosition(position)}/${formatPosition(maxDuration)}"),
                     ],
                   );
                 })
-                : Padding(
-              padding: const EdgeInsets.all(8.0),
+                : const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
-                "Click on play button to start the audio. The audio might take some time to load depending on the speed of your internet connection",
+                "Click on play button to start the audio. The audio might take some time to load depending on the speed of your internet connection",textAlign: TextAlign.center,
                 style: TextStyle(
+                  color: Colors.black,
                     fontSize:
-                    MediaQuery.of(context).devicePixelRatio * 8),
+                    12),
               ),
             );
           },
@@ -271,8 +272,8 @@ class _AttPageState extends State<AttPage> {
       child:Consumer<AppStateNotifier>(builder: (context, appState, child) {
           return Scaffold(
             floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.play_circle_outline),
-              backgroundColor: Theme.of(context).primaryColor,
+              child: Icon(Icons.play_circle_outline,color: Colors.white,),
+              backgroundColor: appState.isDarkMode ? Colors.black : Color(0xffa80000),
               onPressed: () => items[index].containsKey("audioUrl") ||
                   items[index].containsKey("audio_url")
                   ? showModalBottomSheet(

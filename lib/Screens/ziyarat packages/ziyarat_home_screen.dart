@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:glass/glass.dart';
+import 'package:kbm/Screens/ziyarat%20packages/iran.dart';
 import 'package:kbm/Screens/ziyarat%20packages/iraq.dart';
 import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,11 @@ final Map<String, String> imgList = {
   'Iraq': 'images/iraq.jpeg',
   'Iran': 'images/iran.jpeg',
 };
+final List routeName = [
+  IraqPackages(),
+  IranPackages()
+
+];
 class _ZiyaratHomeState extends State<ZiyaratHome> {
   @override
   Widget build(BuildContext context) {
@@ -51,8 +57,11 @@ class _ZiyaratHomeState extends State<ZiyaratHome> {
                         onTap: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => IraqPackages()),
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    routeName.elementAt(index)),
                           );
+
                         },
                         child:
                         Consumer<AppStateNotifier>(

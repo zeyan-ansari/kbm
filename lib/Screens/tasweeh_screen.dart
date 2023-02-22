@@ -21,12 +21,18 @@ class _TasweehScreenState extends State<TasweehScreen> {
 
   void _incrementCounter() {
     setState(() {
+
       _counter ++;
     });
   }
   void _decrementCounter() {
     setState(() {
-      _counter --;
+      if(_counter<=0){
+
+      }else{
+        _counter --;
+      }
+
     });
   }
 
@@ -34,46 +40,48 @@ class _TasweehScreenState extends State<TasweehScreen> {
   Widget build(BuildContext context) {
     return Consumer<AppStateNotifier>(builder: (context, appState, child) {
       return Scaffold(
-        bottomNavigationBar: Container(
-          height: 100,
-          child: Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    HapticFeedback.heavyImpact();
-                    _incrementCounter();
-                  },
-                  child: Container(padding: EdgeInsets.all(25),
-                      margin: EdgeInsets.all(5),
+        bottomNavigationBar: SafeArea(
+          child: Container(
+            height: 100,
+            child: Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticFeedback.heavyImpact();
+                      _incrementCounter();
+                    },
+                    child: Container(padding: EdgeInsets.all(25),
+                        margin: EdgeInsets.all(5),
 
-                      decoration: ShapeDecoration(
-                          color: appState.isDarkMode ? Colors.black : Color(0xffa80000),
-                          shape: ContinuousRectangleBorder(
-                              borderRadius: BorderRadius.circular(42)
-                          )
-                      ),
-                      child: Text('+',textAlign: TextAlign.center,style: TextStyle(fontSize:32,color:Colors.white),)),
+                        decoration: ShapeDecoration(
+                            color: appState.isDarkMode ? Colors.black : Color(0xffa80000),
+                            shape: ContinuousRectangleBorder(
+                                borderRadius: BorderRadius.circular(42)
+                            )
+                        ),
+                        child: Text('+',textAlign: TextAlign.center,style: TextStyle(fontSize:32,color:Colors.white),)),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    HapticFeedback.heavyImpact();
-                    _decrementCounter();
-                  },
-                  child: Container(padding: EdgeInsets.all(25),
-                      margin: EdgeInsets.all(5),
-                      decoration: ShapeDecoration(
-                          color: appState.isDarkMode ? Colors.black : Color(0xffa80000),
-                          shape: ContinuousRectangleBorder(
-                              borderRadius: BorderRadius.circular(42)
-                          )
-                      ),
-                      child: Text('-',textAlign: TextAlign.center,style: TextStyle(fontSize:32,color:Colors.white),)),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      HapticFeedback.heavyImpact();
+                      _decrementCounter();
+                    },
+                    child: Container(padding: EdgeInsets.all(25),
+                        margin: EdgeInsets.all(5),
+                        decoration: ShapeDecoration(
+                            color: appState.isDarkMode ? Colors.black : Color(0xffa80000),
+                            shape: ContinuousRectangleBorder(
+                                borderRadius: BorderRadius.circular(42)
+                            )
+                        ),
+                        child: Text('-',textAlign: TextAlign.center,style: TextStyle(fontSize:32,color:Colors.white),)),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         appBar: PreferredSize(
